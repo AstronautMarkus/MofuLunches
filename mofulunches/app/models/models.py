@@ -4,6 +4,20 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
+class Role(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), unique=True, nullable=False)
+    slug = db.Column(db.String(50), unique=True, nullable=False)
+    description = db.Column(db.String(200))
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'slug': self.slug,
+            'description': self.description
+        }
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(150), nullable=False)
@@ -12,6 +26,8 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(256), nullable=False)
     is_active = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
+    role = db.relationship('Role', backref=db.backref('users', lazy=True))
 
     def to_dict(self):
         return {
@@ -20,5 +36,6 @@ class User(UserMixin, db.Model):
             'last_name': self.last_name,
             'email': self.email,
             'is_active': self.is_active,
-            'created_at': self.created_at.isoformat()
+            'created_at': self.created_at.isoformat(),
+            'role': self.role.to_dict() if self.role else None
         }
