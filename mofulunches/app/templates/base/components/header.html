@@ -1,44 +1,78 @@
-<header class="bg-blue-900 shadow-md px-6 py-4 flex items-center justify-between">
+<nav class="bg-blue-900 border-b border-blue-800 px-6 py-4">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
     <a href="{{ url_for('main.home') }}" class="flex items-center gap-3">
-        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo de MofuLunches" class="h-12 w-12 pointer-events-none">
-        <span class="text-2xl font-extrabold text-white tracking-tight hover:text-yellow-300 hover:underline transition-all">MofuLunches</span>
+      <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo de MofuLunches" class="h-12 w-12 pointer-events-none">
+      <span class="self-center text-2xl font-extrabold text-white tracking-tight hover:text-yellow-300  transition-all">MofuLunches</span>
     </a>
-    <button id="hamburger-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded focus:outline-none bg-blue-800" aria-label="Abrir menú">
-        <span class="block w-6 h-0.5 bg-white mb-1"></span>
-        <span class="block w-6 h-0.5 bg-white mb-1"></span>
-        <span class="block w-6 h-0.5 bg-white"></span>
-    </button>
-    <nav id="main-nav" class="flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-6 md:static md:bg-transparent absolute top-16 left-0 w-full bg-blue-900 md:w-auto md:top-auto md:left-auto transition-all duration-300 z-50 hidden md:block pb-6 md:pb-0">
-        <a href="" class="px-4 py-2 rounded-lg text-white font-medium hover:text-yellow-300 hover:underline transition-all w-[95%] max-w-[95%] mx-auto md:w-auto text-left md:text-center">Inicio</a>
-        <a href="" class="px-4 py-2 rounded-lg text-white font-medium hover:text-yellow-300 hover:underline transition-all w-[95%] max-w-[95%] mx-auto md:w-auto text-left md:text-center">Menú</a>
-        <a href="" class="px-4 py-2 rounded-lg text-white font-medium hover:text-yellow-300 hover:underline transition-all w-[95%] max-w-[95%] mx-auto md:w-auto text-left md:text-center">Contacto</a>
-        {% if current_user.is_authenticated %}
-            <a href="" class="px-4 py-2 rounded-lg bg-white text-blue-900 font-semibold hover:bg-blue-100 transition w-[95%] max-w-[95%] mx-auto md:w-auto text-left md:text-center">Mi Perfil</a>
-            <form action="" method="post" class="inline w-[95%] max-w-[95%] mx-auto md:w-auto">
-                <button type="submit" class="px-4 py-2 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-700 transition w-full md:w-auto text-left md:text-center">Cerrar sesión</button>
+
+    <div class="md:hidden">
+      <button id="dropdownHamburgerButton" data-dropdown-toggle="dropdownHamburgerMenu" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300" aria-expanded="false">
+        <span class="sr-only">Abrir menú principal</span>
+        <svg class="w-6 h-6" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <div id="dropdownHamburgerMenu" class="z-50 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 absolute right-6 mt-2">
+        <ul class="py-2 text-sm text-blue-900" aria-labelledby="dropdownHamburgerButton">
+          <li>
+            <a href="" class="block px-4 py-2 hover:bg-blue-100 hover:text-blue-900">Inicio</a>
+          </li>
+          <li>
+            <a href="" class="block px-4 py-2 hover:bg-blue-100 hover:text-blue-900">Menú</a>
+          </li>
+          <li>
+            <a href="" class="block px-4 py-2 hover:bg-blue-100 hover:text-blue-900">Contacto</a>
+          </li>
+          {% if current_user.is_authenticated %}
+          <li>
+            <a href="" class="block px-4 py-2 font-semibold hover:bg-blue-100">Mi Perfil</a>
+          </li>
+          <li>
+            <form action="" method="post">
+              <button type="submit" class="block w-full text-left px-4 py-2 font-semibold text-red-500 hover:bg-red-100">Cerrar sesión</button>
             </form>
+          </li>
+          {% else %}
+          <li>
+            <a href="" class="block px-4 py-2 font-semibold hover:bg-blue-100">Iniciar sesión</a>
+          </li>
+          <li>
+            <a href="" class="block px-4 py-2 font-semibold border-t border-gray-200 hover:bg-blue-100">Registrarse</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="hidden md:block md:w-auto">
+      <ul class="flex flex-row font-medium space-x-8">
+        <li>
+          <a href="" class="block py-2 px-4 text-white rounded hover:text-yellow-300  transition-all">Inicio</a>
+        </li>
+        <li>
+          <a href="" class="block py-2 px-4 text-white rounded hover:text-yellow-300  transition-all">Menú</a>
+        </li>
+        <li>
+          <a href="" class="block py-2 px-4 text-white rounded hover:text-yellow-300  transition-all">Contacto</a>
+        </li>
+        {% if current_user.is_authenticated %}
+        <li>
+          <a href="" class="block py-2 px-4 bg-white text-blue-900 font-semibold rounded hover:bg-blue-100 transition">Mi Perfil</a>
+        </li>
+        <li>
+          <form action="" method="post" class="inline">
+            <button type="submit" class="block py-2 px-4 bg-red-500 text-white font-semibold rounded hover:bg-red-700 transition w-full text-left md:text-center">Cerrar sesión</button>
+          </form>
+        </li>
         {% else %}
-            <a href="" class="px-4 py-2 rounded-lg bg-white text-blue-900 font-semibold hover:bg-blue-100 transition w-[95%] max-w-[95%] mx-auto md:w-auto text-left md:text-center">Iniciar sesión</a>
-            <a href="" class="px-4 py-2 rounded-lg border border-white text-white font-semibold hover:bg-blue-800 transition w-[95%] max-w-[95%] mx-auto md:w-auto text-left md:text-center">Registrarse</a>
+        <li>
+          <a href="" class="block py-2 px-4 bg-white text-blue-900 font-semibold rounded hover:bg-blue-100 transition">Iniciar sesión</a>
+        </li>
+        <li>
+          <a href="" class="block py-2 px-4 border border-white text-white font-semibold rounded hover:bg-blue-800 transition">Registrarse</a>
+        </li>
         {% endif %}
-    </nav>
-    <script>
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const mainNav = document.getElementById('main-nav');
-        hamburgerBtn.addEventListener('click', function() {
-            mainNav.classList.toggle('hidden');
-        });
-        document.addEventListener('click', function(e) {
-            if (!hamburgerBtn.contains(e.target) && !mainNav.contains(e.target) && window.innerWidth < 768) {
-                mainNav.classList.add('hidden');
-            }
-        });
-        window.addEventListener('resize', function() {
-            if (window.innerWidth >= 768) {
-                mainNav.classList.remove('hidden');
-            } else {
-                mainNav.classList.add('hidden');
-            }
-        });
-    </script>
-</header>
+      </ul>
+    </div>
+  </div>
+</nav>
