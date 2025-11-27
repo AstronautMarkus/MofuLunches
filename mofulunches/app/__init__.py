@@ -26,8 +26,10 @@ def create_app():
 
     from .routes.main import main as main_blueprint
     from .routes.auth import auth as auth_blueprint
+    from .routes.dashboard import dashboard as dashboard_blueprint
 
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint)
+    app.register_blueprint(dashboard_blueprint)
 
     return app

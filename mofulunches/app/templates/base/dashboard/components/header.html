@@ -1,0 +1,126 @@
+<nav class="bg-blue-900 border-b border-blue-800 px-6 py-4">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
+    <a href="{{ url_for('dashboard.dashboard_home') }}" class="flex items-center gap-3">
+      <img src="/static/img/logo.png" alt="Logo Administrativo" class="h-12 w-12 pointer-events-none">
+      <span
+        class="self-center text-2xl font-extrabold text-white tracking-tight hover:text-yellow-300 transition-all">
+        {% if current_user.role.slug == 'admin' %}
+          Panel Administrativo
+        {% elif current_user.role.slug == 'cook' %}
+          Panel de Cocineros
+        {% else %}
+          Panel de Empleados
+        {% endif %}</span>
+    </a>
+
+    <div class="md:hidden">
+      <button id="dropdownHamburgerButton" data-dropdown-toggle="dropdownHamburgerMenu"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300"
+        aria-expanded="false">
+        <span class="sr-only">Abrir menú principal</span>
+        <svg class="w-6 h-6" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <div id="dropdownHamburgerMenu"
+        class="z-50 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 absolute right-6 mt-2">
+        <ul class="py-2 text-sm text-blue-900" aria-labelledby="dropdownHamburgerButton">
+          <li>
+            <a href="/dashboard" class="block px-4 py-2 hover:bg-blue-100 hover:text-blue-900">Panel</a>
+          </li>
+          <li>
+            <a href="/dashboard/users" class="block px-4 py-2 hover:bg-blue-100 hover:text-blue-900">Usuarios</a>
+          </li>
+          <li>
+            <a href="/dashboard/reports" class="block px-4 py-2 hover:bg-blue-100 hover:text-blue-900">Reportes</a>
+          </li>
+          {% if current_user.is_authenticated %}
+          <li>
+
+            <button id="mobileProfileDropdownButton" data-dropdown-toggle="mobileProfileDropdownMenu"
+              class="flex items-center px-4 py-2 w-full text-blue-900 font-semibold hover:bg-blue-100 rounded bg-transparent">
+              <img src="{{ current_user.avatar_url or '/static/img/default.png' }}" alt="Avatar"
+                class="h-8 w-8 rounded-full mr-2 pointer-events-none">
+              <span>
+                {{ current_user.first_name }} {{ current_user.last_name }}
+              </span>
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="mobileProfileDropdownMenu" class="hidden z-50 bg-white rounded-lg shadow mt-2">
+              <ul class="py-2 text-sm text-blue-900">
+                <li>
+                  <a href="/dashboard/profile" class="block px-4 py-2 hover:bg-blue-100">Mi Perfil</a>
+                </li>
+                <li>
+                  <form action="/logout" method="post">
+                    <button type="submit"
+                      class="block w-full text-left px-4 py-2 text-red-700 hover:bg-red-100">Cerrar sesión</button>
+                  </form>
+                </li>
+              </ul>
+            </div>
+          </li>
+          {% else %}
+          <li>
+            <a href="/login" class="block px-4 py-2 font-semibold hover:bg-blue-100">Iniciar sesión</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="hidden md:block md:w-auto">
+      <ul class="flex flex-row font-medium space-x-8">
+        <li>
+          <a href="/dashboard" class="block py-2 px-4 text-white rounded hover:text-yellow-300 transition-all">Panel</a>
+        </li>
+        <li>
+          <a href="/dashboard/users"
+            class="block py-2 px-4 text-white rounded hover:text-yellow-300 transition-all">Usuarios</a>
+        </li>
+        <li>
+          <a href="/dashboard/reports"
+            class="block py-2 px-4 text-white rounded hover:text-yellow-300 transition-all">Reportes</a>
+        </li>
+        {% if current_user.is_authenticated %}
+        <li class="relative">
+
+          <button id="profileDropdownButton" data-dropdown-toggle="profileDropdownMenu"
+            class="flex items-center py-2 px-4 text-white font-semibold rounded hover:text-yellow-300 transition">
+            <img src="{{ current_user.avatar_url or '/static/img/default.png' }}" alt="Avatar"
+              class="h-8 w-8 rounded-full mr-2 pointer-events-none">
+            <span>
+              {{ current_user.first_name }} {{ current_user.last_name }}
+            </span>
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div id="profileDropdownMenu"
+            class="hidden absolute right-0 mt-2 w-44 bg-white rounded-lg shadow z-50">
+            <ul class="py-2 text-sm text-blue-900">
+              <li>
+                <a href="/dashboard/profile" class="block px-4 py-2 hover:bg-blue-100">Mi Perfil</a>
+              </li>
+              <li>
+                <form action="/logout" method="post">
+                  <button type="submit"
+                    class="block w-full text-left px-4 py-2 text-red-700 hover:bg-red-100">Cerrar sesión</button>
+                </form>
+              </li>
+            </ul>
+          </div>
+        </li>
+        {% else %}
+        <li>
+          <a href="/login"
+            class="block py-2 px-4 bg-white text-blue-900 font-semibold rounded hover:bg-blue-100 transition">Iniciar
+            sesión</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

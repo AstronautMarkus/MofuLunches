@@ -13,7 +13,7 @@ def login():
         if user and check_password_hash(user.password, password):
             login_user(user)
             flash('Inicio de sesión exitoso.', 'success')
-            return redirect(url_for('main.home'))
+            return redirect(url_for('dashboard.dashboard_home'))
         else:
             flash('Correo electrónico o contraseña inválidos.', 'danger')
     return render_template('auth/login.html')
