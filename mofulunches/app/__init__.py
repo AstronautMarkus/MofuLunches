@@ -9,25 +9,15 @@ mail = Mail()
 migrate = Migrate()
 login_manager = LoginManager()
 
-app = Flask(__name__)
-app.secret_key = 'your-secret-key'  # Ensure this is set
-
-login_manager.init_app(app)
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
-
 def create_app():
     app = Flask(__name__)
     app.config.from_object('app.config.Config')
+    app.secret_key = app.config['SECRET_KEY']
     CORS(app)
 
     db.init_app(app)
     migrate.init_app(app, db)
-
     mail.init_app(app)
-
     login_manager.init_app(app)
 
     @login_manager.user_loader
@@ -40,5 +30,4 @@ def create_app():
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint)
 
-    
     return app
