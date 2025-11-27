@@ -3,5 +3,145 @@
 {% block title %}MofuLunches{% endblock %}
 
 {% block content %}
-    <h1 class="font-semibold">Hello world, Programmed to work and not to feel.</h1>
+<div class="w-full min-h-[80vh] flex items-center justify-center relative overflow-hidden bg-cover bg-center">
+    <img src="{{ url_for('static', filename='img/background/header-bg.jpg') }}"
+        alt="Background" class="absolute inset-0 w-full h-full object-cover z-0" />
+    <div class="absolute inset-0 bg-black/40 backdrop-blur z-10"></div>
+    <div class="relative z-20 max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between p-8 w-full">
+        <div class="flex-1 text-left md:pr-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white">MofuLunches</h1>
+            <h2 class="text-xl md:text-2xl font-normal mb-6 text-white">Gestiona los almuerzos de tu equipo</h2>
+            <p class="text-base md:text-lg mb-8 text-white">
+                Te gustaría simplificar el proceso de organizar almuerzos en tu equipo? Gestionar mejor los platillos, las preferencias y el inventario? Nunca fue tan fácil con MofuLunches.
+            </p>
+            <a href=""
+                class="inline-block px-12 py-5 rounded-xl bg-blue-800 text-white text-lg font-bold hover:bg-blue-900 transition cursor-pointer hover:scale-105 shadow-lg">Comenzar ahora
+            </a>
+        </div>
+        <div class="flex-1 flex justify-center md:justify-end mt-8 md:mt-0">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="object-contain pointer-events-none" />
+        </div>
+    </div>
+</div>
+
+<div class="max-w-7xl mx-auto my-16 p-8 bg-white rounded-2xl shadow-lg">
+    <h3 class="text-3xl font-bold mb-6 text-gray-900 text-center">Sencillo pero poderoso</h3>
+    <p class="text-lg text-gray-600 mb-10 text-center">
+        Con <strong class="text-blue-700">MofuLunches</strong> puedes gestionar los almuerzos de tu equipo de manera eficiente y sin complicaciones. Soportando incluso tarjetas físicas para una experiencia fluida y cómoda.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <div class="flex flex-col items-center bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-8 shadow hover:shadow-2xl transition duration-300 border border-blue-200">
+            <div class="w-24 h-24 flex items-center justify-center rounded-full mb-4 bg-blue-100 border-4 border-blue-400 shadow-lg">
+            <i class="fas fa-utensils text-blue-700 text-5xl"></i>
+            </div>
+            <div class="text-xl font-semibold mb-2 text-gray-900">Gestión de menús programables</div>
+            <div class="text-base text-gray-600 mb-6 text-center">Prepara y administra menús personalizados para tu empresa, gestionando los almuerzos, postres y bebidas, lo que necesites.</div>
+            <a href="#" data-tooltip-target="tooltip-platillos"
+            class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 transition">
+            Ver más
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+            </a>
+            <div id="tooltip-platillos" role="tooltip" class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-blue-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+            Menús personalizados y programables.
+            <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+        </div>
+
+        <div class="flex flex-col items-center bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-8 shadow hover:shadow-2xl transition duration-300 border border-green-200">
+            <div class="w-24 h-24 flex items-center justify-center rounded-full mb-4 bg-green-100 border-4 border-green-400 shadow-lg">
+            <i class="fas fa-chart-bar text-green-700 text-5xl"></i>
+            </div>
+            <div class="text-xl font-semibold mb-2 text-gray-900">Generación de documentos y estadísticas</div>
+            <div class="text-base text-gray-600 mb-6 text-center">Mantén un control detallado del inventario y genera reportes estadísticos para optimizar la gestión de almuerzos, los más pedidos y más.</div>
+            <a href="#" data-tooltip-target="tooltip-inventario"
+            class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 transition">
+            Ver más
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+            </a>
+            <div id="tooltip-inventario" role="tooltip" class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-green-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+            Todo automatizado mientras tus empleados utilizan el sistema.
+            <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+        </div>
+
+        <div class="flex flex-col items-center bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-8 shadow hover:shadow-2xl transition duration-300 border border-purple-200">
+            <div class="w-24 h-24 flex items-center justify-center rounded-full mb-4 bg-purple-100 border-4 border-purple-400 shadow-lg">
+            <i class="fas fa-id-card text-purple-700 text-5xl"></i>
+            </div>
+            <div class="text-xl font-semibold mb-2 text-gray-900">Tarjetas físicas</div>
+            <div class="text-base text-gray-600 mb-6 text-center">Implementa tarjetas de radiofrecuencia (RFID) para un acceso rápido fácil.</div>
+            <a href="#" data-tooltip-target="tooltip-tarjetas"
+            class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-purple-700 rounded-lg hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 transition">
+            Ver más
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+            </a>
+            <div id="tooltip-tarjetas" role="tooltip" class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-purple-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+            Un simple escaneo y listo.
+            <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="max-w-3xl mx-auto my-16 p-8 bg-white rounded-xl shadow">
+    <h3 class="text-2xl font-semibold mb-4 text-gray-900">Precios</h3>
+    <p class="text-base text-gray-600 mb-8">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam euismod, nunc ut laoreet cursus, enim erat dictum
+        urna.
+    </p>
+    <div class="flex flex-col md:flex-row gap-6 justify-center">
+        <div class="flex-1 bg-gray-100 rounded-lg p-8 text-center shadow">
+            <div class="text-lg font-semibold mb-1 text-gray-900">Básico</div>
+            <div class="text-2xl font-bold mb-3 text-gray-900">Gratis</div>
+            <div class="text-base text-gray-600 mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            <button
+                class="px-6 py-2 rounded-md bg-gray-900 text-white font-medium hover:bg-gray-700 transition">Elegir</button>
+        </div>
+        <div class="flex-1 bg-gray-100 rounded-lg p-8 text-center shadow">
+            <div class="text-lg font-semibold mb-1 text-gray-900">Pro</div>
+            <div class="text-2xl font-bold mb-3 text-gray-900">$19/mes</div>
+            <div class="text-base text-gray-600 mb-6">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+            <button
+                class="px-6 py-2 rounded-md bg-gray-900 text-white font-medium hover:bg-gray-700 transition">Elegir</button>
+        </div>
+        <div class="flex-1 bg-gray-100 rounded-lg p-8 text-center shadow">
+            <div class="text-lg font-semibold mb-1 text-gray-900">Enterprise</div>
+            <div class="text-2xl font-bold mb-3 text-gray-900">$49/mes</div>
+            <div class="text-base text-gray-600 mb-6">Ut enim ad minim veniam, quis nostrud exercitation ullamco.</div>
+            <button
+                class="px-6 py-2 rounded-md bg-gray-900 text-white font-medium hover:bg-gray-700 transition">Elegir</button>
+        </div>
+    </div>
+</div>
+
+<div class="max-w-3xl mx-auto my-16 p-8 bg-white rounded-xl shadow">
+    <h3 class="text-2xl font-semibold mb-4 text-gray-900">Preguntas frecuentes</h3>
+    <p class="text-base text-gray-600 mb-8">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam euismod, nunc ut laoreet cursus, enim erat dictum
+        urna.
+    </p>
+    <div class="flex flex-col md:flex-row gap-6 justify-center">
+        <div class="flex-1 bg-gray-100 rounded-lg p-6 text-center">
+            <div class="text-lg font-medium mb-2 text-gray-900">¿Cómo funciona?</div>
+            <div class="text-base text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        </div>
+        <div class="flex-1 bg-gray-100 rounded-lg p-6 text-center">
+            <div class="text-lg font-medium mb-2 text-gray-900">¿Puedo cancelar en cualquier momento?</div>
+            <div class="text-base text-gray-600">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+        </div>
+        <div class="flex-1 bg-gray-100 rounded-lg p-6 text-center">
+            <div class="text-lg font-medium mb-2 text-gray-900">¿Hay soporte?</div>
+            <div class="text-base text-gray-600">Ut enim ad minim veniam, quis nostrud exercitation ullamco.</div>
+        </div>
+    </div>
+</div>
 {% endblock %}
