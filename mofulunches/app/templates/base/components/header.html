@@ -15,7 +15,7 @@
       <div id="dropdownHamburgerMenu" class="z-50 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 absolute right-6 mt-2">
         <ul class="py-2 text-sm text-blue-900" aria-labelledby="dropdownHamburgerButton">
           <li>
-            <a href="" class="block px-4 py-2 hover:bg-blue-100 hover:text-blue-900">Inicio</a>
+            <a href="{{ url_for('main.home') }}" class="block px-4 py-2 hover:bg-blue-100 hover:text-blue-900">Inicio</a>
           </li>
           <li>
             <a href="" class="block px-4 py-2 hover:bg-blue-100 hover:text-blue-900">Menú</a>
@@ -25,19 +25,24 @@
           </li>
           {% if current_user.is_authenticated %}
           <li>
-            <a href="" class="block px-4 py-2 font-semibold hover:bg-blue-100">Mi Perfil</a>
+            <a href="" class="block px-4 py-2 font-semibold hover:bg-blue-100">
+              Mi Perfil
+              <span class="ml-2 text-blue-700 font-normal">
+                {{ current_user.first_name }}
+              </span>
+            </a>
           </li>
           <li>
-            <form action="" method="post">
+            <form action="{{ url_for('auth.logout') }}" method="post">
               <button type="submit" class="block w-full text-left px-4 py-2 font-semibold text-red-500 hover:bg-red-100">Cerrar sesión</button>
             </form>
           </li>
           {% else %}
           <li>
-            <a href="" class="block px-4 py-2 font-semibold hover:bg-blue-100">Iniciar sesión</a>
+            <a href="{{ url_for('auth.login') }}" class="block px-4 py-2 font-semibold hover:bg-blue-100">Iniciar sesión</a>
           </li>
           <li>
-            <a href="" class="block px-4 py-2 font-semibold border-t border-gray-200 hover:bg-blue-100">Registrarse</a>
+            <a href="{{ url_for('auth.register') }}" class="block px-4 py-2 font-semibold border-t border-gray-200 hover:bg-blue-100">Registrarse</a>
           </li>
           {% endif %}
         </ul>
@@ -47,7 +52,7 @@
     <div class="hidden md:block md:w-auto">
       <ul class="flex flex-row font-medium space-x-8">
         <li>
-          <a href="" class="block py-2 px-4 text-white rounded hover:text-yellow-300  transition-all">Inicio</a>
+          <a href="{{ url_for('main.home') }}" class="block py-2 px-4 text-white rounded hover:text-yellow-300  transition-all">Inicio</a>
         </li>
         <li>
           <a href="" class="block py-2 px-4 text-white rounded hover:text-yellow-300  transition-all">Menú</a>
@@ -57,19 +62,24 @@
         </li>
         {% if current_user.is_authenticated %}
         <li>
-          <a href="" class="block py-2 px-4 bg-white text-blue-900 font-semibold rounded hover:bg-blue-100 transition">Mi Perfil</a>
+          <a href="" class="block py-2 px-4 bg-white text-blue-900 font-semibold rounded hover:bg-blue-100 transition">
+            Mi Perfil
+            <span class="ml-2 text-blue-700 font-normal">
+              {{ current_user.first_name }}
+            </span>
+          </a>
         </li>
         <li>
-          <form action="" method="post" class="inline">
+          <form action="{{ url_for('auth.logout') }}" method="post" class="inline">
             <button type="submit" class="block py-2 px-4 bg-red-500 text-white font-semibold rounded hover:bg-red-700 transition w-full text-left md:text-center">Cerrar sesión</button>
           </form>
         </li>
         {% else %}
         <li>
-          <a href="" class="block py-2 px-4 bg-white text-blue-900 font-semibold rounded hover:bg-blue-100 transition">Iniciar sesión</a>
+          <a href="{{ url_for('auth.login') }}" class="block py-2 px-4 bg-white text-blue-900 font-semibold rounded hover:bg-blue-100 transition">Iniciar sesión</a>
         </li>
         <li>
-          <a href="" class="block py-2 px-4 border border-white text-white font-semibold rounded hover:bg-blue-800 transition">Registrarse</a>
+          <a href="{{ url_for('auth.register') }}" class="block py-2 px-4 border border-white text-white font-semibold rounded hover:bg-blue-800 transition">Registrarse</a>
         </li>
         {% endif %}
       </ul>
